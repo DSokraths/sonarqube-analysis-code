@@ -1,0 +1,7 @@
+foo: "bar"
+    bar: 'foo'
+    number: 123
+    boolean: true
+
+strange var:
+      [10, 20, 30, {x: 1, y: 2}]
