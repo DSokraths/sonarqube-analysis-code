@@ -1,39 +1,23 @@
-// sample.js
-
-// Function to add two numbers
-function add(a, b) {
-    return a + b;
-}
-
-// Function to subtract two numbers
-function subtract(a, b) {
-    return a - b;
-}
-
-// Function to multiply two numbers
-function multiply(a, b) {
-    return a * b;
-}
-
-// Function to divide two numbers with error handling
-function divide(a, b) {
-    if (b === 0) {
-        throw new Error("Cannot divide by zero");
+function concatenate() {
+    let args = Array.prototype.slice.call(arguments);  // Noncompliant
+    return args.join(', ');
+  }
+  
+  function doSomething(isTrue) {
+    var args = Array.prototype.slice.call(arguments, 1); // Noncompliant
+    if (!isTrue) {
+      for (var arg of args) {
+        // ...
+      }
     }
-    return a / b;
-}
+  }
 
-// Function to calculate the factorial of a number
-function factorial(n) {
-    if (n < 0) {
-        throw new Error("Negative numbers are not allowed");
-    }
-    return n === 0 ? 1 : n * factorial(n - 1);
-}
+  const numbers = [10, 2, 30, 1, 5];
+numbers.sort(); // Noncompliant: lexicographic sort
+console.log(numbers); // Output: [1, 10, 2, 30, 5]
 
-// Sample usage
-console.log("Addition: ", add(5, 3)); // Output: 8
-console.log("Subtraction: ", subtract(5, 3)); // Output: 2
-console.log("Multiplication: ", multiply(5, 3)); // Output: 15
-console.log("Division: ", divide(5, 0)); // Output: Error: Cannot divide by zero
-console.log("Factorial: ", factorial(5)); // Output: 120
+function sum(xs) {
+    return xs.reduce((acc, current) => acc + current); // Noncompliant
+  }
+  console.log(sum([1, 2, 3, 4, 5])); // Prints 15
+  console.log(sum([])); // TypeError: Reduce of empty array with no initial value
